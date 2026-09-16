@@ -3,46 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>MYM JEWELRIES.NG | Exquisite Jewelry Collection</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap 5.3.3 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
 
     <style>
         :root {
             --primary-color: #4a2c20;
             --accent-color: #d4af37;
             --bg-light: #fdfaf7;
+            --dark-color: #21130e;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
+            margin: 0;
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-light);
             color: #333;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, .navbar-brand {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .navbar-brand {
             font-family: 'Playfair Display', serif;
         }
 
-        /* Navbar Styling */
+        /* =========================
+           NAVBAR
+        ========================= */
+
         .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            background-color: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            z-index: 9999;
         }
 
         .navbar-brand {
             font-weight: 800;
             color: var(--primary-color) !important;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
-        /* Hero Carousel Slider */
+        .navbar-toggler {
+            border: 1px solid rgba(74, 44, 32, 0.25);
+            padding: 7px 10px;
+        }
+
+        .navbar-toggler:focus {
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 4px;
+            height: 2px;
+            background-color: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* =========================
+           HERO CAROUSEL
+        ========================= */
+
         .carousel-item {
             height: 85vh;
             min-height: 520px;
@@ -50,289 +120,1004 @@
         }
 
         .carousel-item img {
-            object-fit: cover;
-            height: 100%;
             width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
-        /* Low opacity dark overlay over background photos */
         .carousel-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.45) 100%);
+            inset: 0;
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(0, 0, 0, 0.68) 0%,
+                    rgba(0, 0, 0, 0.40) 50%,
+                    rgba(0, 0, 0, 0.68) 100%
+                );
         }
 
         .carousel-caption {
-            bottom: 30%;
+            right: 5%;
+            left: 5%;
+            bottom: 24%;
             z-index: 2;
         }
 
         .carousel-caption h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.3rem, 5vw, 4.5rem);
             font-weight: 800;
-            color: #ffffff;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            color: #fff;
+            text-shadow: 2px 3px 10px rgba(0, 0, 0, 0.7);
+            margin-bottom: 15px;
         }
 
-        /* Buttons */
+        .carousel-caption p {
+            color: #fff;
+            text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 8%;
+            z-index: 3;
+        }
+
+        .carousel-indicators {
+            z-index: 4;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
         .btn-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--primary-color);
             color: #fff;
-            padding: 12px 32px;
+            padding: 12px 30px;
             border-radius: 30px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            text-decoration: none;
             border: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+            transition: all 0.3s ease;
         }
 
         .btn-custom:hover {
             background-color: var(--accent-color);
             color: #fff;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
         }
 
         .btn-outline-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             border: 2px solid #fff;
             color: #fff;
-            padding: 12px 32px;
+            padding: 10px 30px;
             border-radius: 30px;
             font-weight: 500;
+            text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .btn-outline-custom:hover {
             background-color: #fff;
             color: var(--primary-color);
+            transform: translateY(-3px);
         }
 
-        /* Feature Cards */
+        /* =========================
+           SECTION TITLES
+        ========================= */
+
+        .tracking-widest {
+            letter-spacing: 3px;
+        }
+
+        .section-line {
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-color);
+            margin: 15px auto;
+        }
+
+        /* =========================
+           JEWELRY CARDS
+        ========================= */
+
         .card-jewelry {
             border: none;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            transition: all 0.3s ease;
-            background: #ffffff;
+            background: #fff;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.35s ease;
         }
 
         .card-jewelry:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.13);
         }
 
         .card-jewelry img {
+            width: 100%;
             height: 340px;
             object-fit: cover;
-            width: 100%;
+            transition: transform 0.5s ease;
         }
 
-        /* Store Address Section */
+        .card-jewelry:hover img {
+            transform: scale(1.04);
+        }
+
+        .card-title {
+            line-height: 1.4;
+        }
+
+        /* =========================
+           LOCATION
+        ========================= */
+
         .address-box {
-            background: linear-gradient(135deg, #ffffff 0%, #f7ebe1 100%);
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #f7ebe1 100%
+                );
             border-radius: 20px;
             border: 1px solid #ead0be;
         }
 
-        /* Call/WhatsApp Badges */
+        .address-text {
+            color: #333;
+            word-break: normal;
+        }
+
+        /* =========================
+           PHONE / WHATSAPP
+        ========================= */
+
         .phone-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: #25d366;
-            color: white;
-            padding: 12px 28px;
+            color: #fff;
+            padding: 12px 26px;
             border-radius: 50px;
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             font-weight: 600;
-            display: inline-block;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.25);
             transition: all 0.3s ease;
         }
 
         .phone-badge:hover {
-            color: white;
+            color: #fff;
+            transform: translateY(-3px);
             background-color: #1ebc57;
-            transform: translateY(-2px);
         }
+
+        .whatsapp-dark {
+            background-color: #075e54;
+        }
+
+        .whatsapp-dark:hover {
+            background-color: #064c44;
+        }
+
+        /* =========================
+           FLOATING WHATSAPP
+        ========================= */
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 30px;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+            z-index: 9998;
+            transition: all 0.3s ease;
+        }
+
+        .floating-whatsapp:hover {
+            color: #fff;
+            transform: scale(1.08);
+            background-color: #1ebc57;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             background-color: var(--primary-color);
             color: #e0e0e0;
         }
 
-        @media (max-width: 768px) {
-            .carousel-caption h1 {
-                font-size: 2.2rem;
+        .footer-brand {
+            color: var(--accent-color);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 991.98px) {
+
+            .navbar-collapse {
+                padding: 12px 0 15px;
             }
+
+            .nav-link {
+                padding: 12px 15px !important;
+                border-radius: 8px;
+            }
+
+            .nav-link:hover {
+                background-color: rgba(212, 175, 55, 0.08);
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+
+            html {
+                scroll-padding-top: 70px;
+            }
+
+            .navbar-brand {
+                font-size: 1.25rem !important;
+                letter-spacing: 0.5px;
+            }
+
             .carousel-item {
-                height: 70vh;
+                height: 72vh;
+                min-height: 560px;
+            }
+
+            .carousel-item img {
+                object-position: center;
+            }
+
+            .carousel-caption {
+                bottom: 17%;
+                right: 15px;
+                left: 15px;
+            }
+
+            .carousel-caption h1 {
+                font-size: clamp(2rem, 9vw, 3rem);
+                line-height: 1.15;
+            }
+
+            .carousel-caption p {
+                font-size: 1rem !important;
+                line-height: 1.6;
+                margin-bottom: 25px !important;
+            }
+
+            .carousel-caption .btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 5px auto !important;
+                padding: 12px 18px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 12%;
+            }
+
+            .card-jewelry img {
+                height: 300px;
+            }
+
+            .address-box {
+                padding: 28px 18px !important;
+            }
+
+            .address-text {
+                font-size: 1rem !important;
+                line-height: 1.6;
+            }
+
+            .phone-badge {
+                width: 100%;
+                max-width: 330px;
+                font-size: 1rem;
+                margin-right: 0 !important;
+            }
+
+            .floating-whatsapp {
+                width: 54px;
+                height: 54px;
+                right: 15px;
+                bottom: 15px;
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .carousel-item {
+                height: 76vh;
+                min-height: 540px;
+            }
+
+            .carousel-caption {
+                bottom: 15%;
+            }
+
+            .carousel-caption h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-caption p {
+                font-size: 0.95rem !important;
+            }
+
+            .card-jewelry img {
+                height: 280px;
+            }
+
+            .display-6 {
+                font-size: 1.8rem;
+            }
+
+            .tracking-widest {
+                letter-spacing: 2px;
+                font-size: 0.75rem;
+            }
+
+            .address-box h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Navbar -->
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand fs-3" href="#">MYM JEWELRIES<span style="color: var(--accent-color);">.NG</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+
+            <a class="navbar-brand fs-3" href="#home">
+                MYM JEWELRIES<span style="color: var(--accent-color);">.NG</span>
+            </a>
+
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
+
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link text-dark fw-medium px-3" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-medium px-3" href="#collection">Collection</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-medium px-3" href="#location">Visit Us</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark fw-medium px-3" href="#contact">Contact</a></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="#home">
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="#collection">
+                            Collection
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="#location">
+                            Visit Us
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-medium px-3" href="#contact">
+                            Contact
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
         </div>
     </nav>
 
-    <!-- Slider / Hero Carousel with Low-Opacity Backdrop Effect -->
+
+    <!-- =========================
+         HERO SECTION
+    ========================= -->
+
     <section id="home">
-        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <div
+            id="heroCarousel"
+            class="carousel slide carousel-fade"
+            data-bs-ride="carousel"
+            data-bs-interval="4000"
+        >
+
+            <!-- Indicators -->
             <div class="carousel-indicators">
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+
+                <button
+                    type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+                ></button>
+
+                <button
+                    type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+                ></button>
+
+                <button
+                    type="button"
+                    data-bs-target="#heroCarousel"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+                ></button>
+
             </div>
+
 
             <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active" data-bs-interval="4000">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1600&q=80" alt="Gold Jewelry Background">
+
+                <!-- SLIDE 1 -->
+
+                <div class="carousel-item active" data-bs-interval="4500">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1800&q=85"
+                        alt="Luxury gold jewelry"
+                        fetchpriority="high"
+                    >
+
                     <div class="carousel-overlay"></div>
+
                     <div class="carousel-caption container text-center">
+
                         <h1>MYM JEWELRIES.NG</h1>
-                        <p class="fs-4 mb-4">Elegance & Perfection | Since 2022</p>
-                        <a href="https://wa.me/2349079100702" class="btn btn-custom me-2"><i class="fab fa-whatsapp me-2"></i>Order on WhatsApp</a>
-                        <a href="#location" class="btn btn-outline-custom">Visit Store</a>
+
+                        <p class="fs-4 mb-4">
+                            Elegance &amp; Perfection | Since 2022
+                        </p>
+
+                        <div class="d-flex flex-wrap justify-content-center gap-2">
+
+                            <a
+                                href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20make%20an%20inquiry."
+                                target="_blank"
+                                rel="noopener"
+                                class="btn btn-custom"
+                            >
+                                <i class="fab fa-whatsapp me-2"></i>
+                                Order on WhatsApp
+                            </a>
+
+                            <a
+                                href="#location"
+                                class="btn btn-outline-custom"
+                            >
+                                Visit Store
+                            </a>
+
+                        </div>
+
                     </div>
+
                 </div>
 
-                <!-- Slide 2 -->
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1600&q=80" alt="Luxury Set Slide">
+
+                <!-- SLIDE 2 -->
+
+                <div class="carousel-item" data-bs-interval="4500">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1800&q=85"
+                        alt="Exquisite jewelry collection"
+                        loading="lazy"
+                    >
+
                     <div class="carousel-overlay"></div>
+
                     <div class="carousel-caption container text-center">
+
                         <h1>Exquisite Gold Sets</h1>
-                        <p class="fs-4 mb-4">Crafted for Weddings, Celebrations & Special Moments</p>
-                        <a href="#collection" class="btn btn-custom">View Collections</a>
+
+                        <p class="fs-4 mb-4">
+                            Crafted for Weddings, Celebrations &amp; Special Moments
+                        </p>
+
+                        <a
+                            href="#collection"
+                            class="btn btn-custom"
+                        >
+                            View Collections
+                        </a>
+
                     </div>
+
                 </div>
 
-                <!-- Slide 3 -->
-                <div class="carousel-item" data-bs-interval="4000">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1600&q=80" alt="Black Crystal Set Slide">
+
+                <!-- SLIDE 3 -->
+
+                <div class="carousel-item" data-bs-interval="4500">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1800&q=85"
+                        alt="Statement jewelry"
+                        loading="lazy"
+                    >
+
                     <div class="carousel-overlay"></div>
+
                     <div class="carousel-caption container text-center">
+
                         <h1>Statement Jewelry</h1>
-                        <p class="fs-4 mb-4">Unique & Luxury Designs Tailored For You</p>
-                        <a href="tel:09079100702" class="btn btn-custom"><i class="fas fa-phone me-2"></i>Call Us Now</a>
+
+                        <p class="fs-4 mb-4">
+                            Unique &amp; Luxury Designs Tailored For You
+                        </p>
+
+                        <a
+                            href="tel:09079100702"
+                            class="btn btn-custom"
+                        >
+                            <i class="fas fa-phone me-2"></i>
+                            Call Us Now
+                        </a>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+
+            <!-- Previous -->
+
+            <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide="prev"
+                aria-label="Previous slide"
+            >
                 <span class="carousel-control-prev-icon"></span>
             </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+
+
+            <!-- Next -->
+
+            <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#heroCarousel"
+                data-bs-slide="next"
+                aria-label="Next slide"
+            >
                 <span class="carousel-control-next-icon"></span>
             </button>
+
         </div>
+
     </section>
 
-    <!-- Collection Showcase -->
+
+    <!-- =========================
+         COLLECTION
+    ========================= -->
+
     <section id="collection" class="py-5">
+
         <div class="container py-4">
+
             <div class="text-center mb-5">
-                <p class="text-uppercase tracking-widest text-muted fw-semibold mb-1">Our Showcase</p>
-                <h2 class="display-6 fw-bold" style="color: var(--primary-color);">Top Jewelry Collections</h2>
-                <div style="width: 70px; height: 3px; background-color: var(--accent-color); margin: 15px auto;"></div>
+
+                <p class="text-uppercase tracking-widest text-muted fw-semibold mb-1">
+                    Our Showcase
+                </p>
+
+                <h2
+                    class="display-6 fw-bold"
+                    style="color: var(--primary-color);"
+                >
+                    Top Jewelry Collections
+                </h2>
+
+                <div class="section-line"></div>
+
             </div>
+
 
             <div class="row g-4">
-                <!-- Card 1: Black Flower Crystal Set (Matches flyer left item) -->
-                <div class="col-md-4">
+
+                <!-- CARD 1 -->
+
+                <div class="col-12 col-md-6 col-lg-4">
+
                     <div class="card card-jewelry h-100">
-                        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80" alt="Black Crystal Flower Set">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=900&q=85"
+                            alt="Black Flower Crystal Set"
+                            loading="lazy"
+                        >
+
                         <div class="card-body text-center p-4">
-                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Black Flower Crystal Set</h5>
-                            <p class="card-text text-muted small">Elegant dark flower motif necklace with matching earrings.</p>
-                            <a href="https://wa.me/2349079100702?text=I%20want%20to%20buy%20the%20Black%20Flower%20Crystal%20Set" class="btn btn-sm btn-custom mt-2">Order via WhatsApp</a>
+
+                            <h5
+                                class="card-title fw-bold"
+                                style="color: var(--primary-color);"
+                            >
+                                Black Flower Crystal Set
+                            </h5>
+
+                            <p class="card-text text-muted small">
+                                Elegant dark flower motif necklace with matching earrings.
+                            </p>
+
+                            <a
+                                href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20buy%20the%20Black%20Flower%20Crystal%20Set."
+                                target="_blank"
+                                rel="noopener"
+                                class="btn btn-sm btn-custom mt-2"
+                            >
+                                <i class="fab fa-whatsapp me-1"></i>
+                                Order via WhatsApp
+                            </a>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Card 2: Golden Curved Fringe Set (Matches flyer right item - SARA) -->
-                <div class="col-md-4">
+
+                <!-- CARD 2 -->
+
+                <div class="col-12 col-md-6 col-lg-4">
+
                     <div class="card card-jewelry h-100">
-                        <img src="https://images.unsplash.com/photo-1611591475155-4282faa209e2?auto=format&fit=crop&w=800&q=80" alt="Royal Golden Fringe Set">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1611591475155-4282faa209e2?auto=format&fit=crop&w=900&q=85"
+                            alt="Royal SARA Gold Set"
+                            loading="lazy"
+                        >
+
                         <div class="card-body text-center p-4">
-                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Royal SARA Gold Set</h5>
-                            <p class="card-text text-muted small">Statement golden collar set with matching ring and earrings.</p>
-                            <a href="https://wa.me/2349079100702?text=I%20want%20to%20buy%20the%20Royal%20SARA%20Gold%20Set" class="btn btn-sm btn-custom mt-2">Order via WhatsApp</a>
+
+                            <h5
+                                class="card-title fw-bold"
+                                style="color: var(--primary-color);"
+                            >
+                                Royal SARA Gold Set
+                            </h5>
+
+                            <p class="card-text text-muted small">
+                                Statement golden collar set with matching ring and earrings.
+                            </p>
+
+                            <a
+                                href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20buy%20the%20Royal%20SARA%20Gold%20Set."
+                                target="_blank"
+                                rel="noopener"
+                                class="btn btn-sm btn-custom mt-2"
+                            >
+                                <i class="fab fa-whatsapp me-1"></i>
+                                Order via WhatsApp
+                            </a>
+
                         </div>
+
                     </div>
+
                 </div>
 
-                <!-- Card 3: Wedding & Party Glamour Set -->
-                <div class="col-md-4">
+
+                <!-- CARD 3 -->
+
+                <div class="col-12 col-md-6 col-lg-4">
+
                     <div class="card card-jewelry h-100">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=800&q=80" alt="Bridal Luxury Set">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=85"
+                            alt="Signature Bridal Set"
+                            loading="lazy"
+                        >
+
                         <div class="card-body text-center p-4">
-                            <h5 class="card-title fw-bold" style="color: var(--primary-color);">Signature Bridal Set</h5>
-                            <p class="card-text text-muted small">Heavy luxury gold bridal collection perfect for special events.</p>
-                            <a href="https://wa.me/2349079100702?text=I%20want%20to%20buy%20the%20Signature%20Bridal%20Set" class="btn btn-sm btn-custom mt-2">Order via WhatsApp</a>
+
+                            <h5
+                                class="card-title fw-bold"
+                                style="color: var(--primary-color);"
+                            >
+                                Signature Bridal Set
+                            </h5>
+
+                            <p class="card-text text-muted small">
+                                Heavy luxury gold bridal collection perfect for special events.
+                            </p>
+
+                            <a
+                                href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20buy%20the%20Signature%20Bridal%20Set."
+                                target="_blank"
+                                rel="noopener"
+                                class="btn btn-sm btn-custom mt-2"
+                            >
+                                <i class="fab fa-whatsapp me-1"></i>
+                                Order via WhatsApp
+                            </a>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Address & Contact Section -->
+
+    <!-- =========================
+         LOCATION + CONTACT
+    ========================= -->
+
     <section id="location" class="py-5 bg-white">
+
         <div class="container py-4">
+
             <div class="address-box p-4 p-md-5 text-center shadow-sm">
-                <h2 class="fw-bold mb-3" style="color: var(--primary-color);">Visit Our Physical Store</h2>
-                <p class="text-muted fs-5 mb-4">Walk in today to explore our exclusive catalog in Kano!</p>
-                
+
+                <h2
+                    class="fw-bold mb-3"
+                    style="color: var(--primary-color);"
+                >
+                    Visit Our Physical Store
+                </h2>
+
+                <p class="text-muted fs-5 mb-4">
+                    Walk in today to explore our exclusive catalog in Kano!
+                </p>
+
+
+                <!-- ADDRESS -->
+
                 <div class="d-flex justify-content-center align-items-center mb-4 flex-wrap">
-                    <i class="fas fa-map-marker-alt fa-2x text-danger me-3 mb-2 mb-md-0"></i>
+
+                    <i
+                        class="fas fa-map-marker-alt fa-2x text-danger me-3 mb-3 mb-md-0"
+                    ></i>
+
                     <div class="text-start">
-                        <h6 class="text-uppercase mb-0 text-muted fw-bold">Shop Address</h6>
-                        <span class="fs-5 fw-bold" style="color: #333;">NO.22 NA ABBA LINE YAN TAYA, IBBWAY KANO</span>
+
+                        <h6 class="text-uppercase mb-1 text-muted fw-bold">
+                            Shop Address
+                        </h6>
+
+                        <span class="fs-5 fw-bold address-text">
+                            NO.22 NA ABBA LINE YAN TAYA, IBBWAY KANO
+                        </span>
+
                     </div>
+
                 </div>
+
+
+                <!-- CONTACT -->
 
                 <div id="contact" class="mt-4 pt-2">
-                    <p class="mb-3 text-muted fw-semibold">Click below to call or order directly:</p>
-                    <a href="tel:09079100702" class="phone-badge me-2 mb-2">
-                        <i class="fas fa-phone-alt me-2"></i> 09079100702
-                    </a>
-                    <a href="https://wa.me/2349079100702" class="phone-badge mb-2" style="background-color: #075e54;">
-                        <i class="fab fa-whatsapp me-2"></i> Chat on WhatsApp
-                    </a>
+
+                    <p class="mb-3 text-muted fw-semibold">
+                        Click below to call or order directly:
+                    </p>
+
+
+                    <div class="d-flex justify-content-center flex-wrap gap-2">
+
+                        <a
+                            href="tel:09079100702"
+                            class="phone-badge"
+                        >
+                            <i class="fas fa-phone-alt me-2"></i>
+                            09079100702
+                        </a>
+
+
+                        <a
+                            href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20make%20an%20inquiry."
+                            target="_blank"
+                            rel="noopener"
+                            class="phone-badge whatsapp-dark"
+                        >
+                            <i class="fab fa-whatsapp me-2"></i>
+                            Chat on WhatsApp
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
-    <!-- Footer -->
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
     <footer class="py-4 text-center">
+
         <div class="container">
-            <p class="mb-1 fw-bold fs-5" style="color: var(--accent-color);">MYM JEWELRIES.NG</p>
-            <p class="small text-white-50 mb-0">Since 2022 | All Rights Reserved</p>
+
+            <p class="mb-1 fw-bold fs-5 footer-brand">
+                MYM JEWELRIES.NG
+            </p>
+
+            <p class="small text-white-50 mb-0">
+                Since 2022 | © <span id="currentYear"></span> All Rights Reserved
+            </p>
+
         </div>
+
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- =========================
+         FLOATING WHATSAPP
+    ========================= -->
+
+    <a
+        href="https://wa.me/2349079100702?text=Hello%20MYM%20Jewelry%2C%20I%20want%20to%20make%20an%20inquiry."
+        target="_blank"
+        rel="noopener"
+        class="floating-whatsapp"
+        aria-label="Chat with MYM Jewelries on WhatsApp"
+    >
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* =========================
+               MOBILE NAVBAR AUTO CLOSE
+            ========================= */
+
+            const navbar = document.getElementById("navbarNav");
+
+            const navLinks = document.querySelectorAll(
+                "#navbarNav .nav-link"
+            );
+
+            navLinks.forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    if (navbar.classList.contains("show")) {
+
+                        const collapse =
+                            bootstrap.Collapse.getInstance(navbar);
+
+                        if (collapse) {
+
+                            collapse.hide();
+
+                        } else {
+
+                            new bootstrap.Collapse(
+                                navbar,
+                                {
+                                    toggle: false
+                                }
+                            ).hide();
+
+                        }
+
+                    }
+
+                });
+
+            });
+
+
+            /* =========================
+               AUTOMATIC COPYRIGHT YEAR
+            ========================= */
+
+            const yearElement =
+                document.getElementById("currentYear");
+
+            if (yearElement) {
+
+                yearElement.textContent =
+                    new Date().getFullYear();
+
+            }
+
+
+            /* =========================
+               CLOSE NAVBAR WHEN
+               CLICKING OUTSIDE
+            ========================= */
+
+            document.addEventListener("click", function (event) {
+
+                const navbarContainer =
+                    document.querySelector(".navbar");
+
+                if (
+                    navbar.classList.contains("show") &&
+                    !navbarContainer.contains(event.target)
+                ) {
+
+                    const collapse =
+                        bootstrap.Collapse.getInstance(navbar);
+
+                    if (collapse) {
+                        collapse.hide();
+                    }
+
+                }
+
+            });
+
+        });
+
+    </script>
+
 </body>
 </html>
-
